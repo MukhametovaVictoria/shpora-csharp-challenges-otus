@@ -1,3 +1,135 @@
+## 📝 Task Description (English)
+
+### Overview
+
+This task is divided into **three subtasks**, where each subsequent subtask includes all previous ones.
+Code review will be performed on the most complete subtask submitted:
+
+* If you submit the first and second subtasks, we will review the second and accept both.
+* If you submit only the third subtask, we will review it and accept all subtasks at once.
+
+---
+
+### Task
+
+You need to write a **parser for mathematical expressions** containing **random variables**.
+
+You should download the **RandomVariable** project and implement `RandomVariableStatisticCalculator`.
+Its **only method** receives:
+
+1. a string describing a random variable, and
+2. a set of statistics to compute.
+
+---
+
+### Expression Format
+
+The string is a valid mathematical expression consisting of:
+
+* **Unary operators:** `+` or `-`
+* **Binary operators:** `+`, `-`, `*`, `/`
+* **Parentheses** for grouping
+* **Operands:** numbers or random variables
+
+Numbers can be integers (`2`) or decimals (`1.5`).
+All numbers should be treated as doubles — e.g., the expression `3/2` should yield `1.5`, not `1`.
+
+Random variables use **standard D&D notation**: `XdY` (e.g., `1d20`, `2d6`, `1d3`)
+
+* **X** and **Y** are positive integers
+* `XdY` means: “roll X dice with Y sides each and sum the results”
+
+**Restrictions:**
+
+* X and Y cannot be decimals, expressions, or random variables — only integers 1–100
+* Between two random variables, only addition and subtraction are allowed
+
+**Valid examples:**
+
+```
+5 * (1d20 + 4) / 7 + 1d6
+```
+
+**Invalid examples:**
+
+```
+1d20 * 2d6
+1d3 / (4 + 2d20)
+```
+
+---
+
+### Requirements
+
+#### 1. Decomposition
+
+* Code must be logically divided into **classes and methods**
+* Solutions without decomposition will **not pass review**
+* You may package your project using the familiar `csharp-packer` in `UserCode.cs`
+* Only the contents of `UserCode.cs` should be submitted
+
+#### 2. Efficiency
+
+* Code must be **asymptotically efficient**
+* Replacing LINQ with `foreach` is fine, but the goal is to **replace exponential algorithms with polynomial ones**
+
+#### 3. Correctness
+
+* Code must work correctly not only on the provided tests, but also on unseen cases
+
+---
+
+### Subtasks
+
+#### **Subtask 1 — Expected Value**
+
+* Compute only the **expected value** of a discrete random variable
+* Must be **O(n)** complexity
+
+| Input                   | Expected Value    |
+| ----------------------- | ----------------- |
+| `2+2*2`                 | 6                 |
+| `1d20`                  | 10.5              |
+| `2d6+(-1d12/5)`         | 5.7               |
+| `(1d12+2d6)/2`          | 6.75              |
+| `3/2.1+100d100-4d8+1d4` | 5035.928571428572 |
+
+---
+
+#### **Subtask 2 — Variance**
+
+* In addition to the expected value, compute **variance**
+* Algorithm must still be **O(n)**
+
+| Input                   | Expected Value    | Variance |
+| ----------------------- | ----------------- | -------- |
+| `2+2*2`                 | 6                 | 0        |
+| `1d20`                  | 10.5              | 33.25    |
+| `2d6+(-1d12/5)`         | 5.7               | 6.31     |
+| `(1d12+2d6)/2`          | 6.75              | 4.4375   |
+| `3/2.1+100d100-4d8+1d4` | 5035.928571428572 | 83347.25 |
+
+---
+
+#### **Subtask 3 — Probability Mass Function (PMF)**
+
+* In addition to expected value and variance, compute the **probability mass function** (PMF) `f`
+* Computing the PMF is algorithmically more complex; no strict complexity requirement is imposed
+* However, code should still **efficiently compute expected value and variance in O(n)**
+
+---
+
+### 💡 Notes
+
+* Expressions are composed of numbers and random variables in **D&D notation**
+* Only addition and subtraction are allowed between random variables
+* Make sure all numeric calculations are **double-precision**
+* Structure your code with clear **decomposition**, efficiency, and correctness in mind
+
+---
+
+Описание на русском:
+
 Как устроена эта задача?
     
 Она разделена на три подзадачи, каждая последующая включает в себя предыдущие. Поэтому code-review будем проводить самой полной подзадачи (сдашь первую и вторую — проверим вторую и засчитаем обе; сдашь только третью — проверим ее и засчитаем сразу все).
