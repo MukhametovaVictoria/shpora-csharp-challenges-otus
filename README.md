@@ -19,9 +19,12 @@ Each folder contains a single challenge with a readable solution and, where appr
 
 ## 🗂 Project Structure
 
-- `ChallengeName1/` — Task description + implementation  
-- `ChallengeName2/` — Another problem + solution  
-*(And so on)*
+- `Challenge 1` — Task 1 description
+- `Archive/`  — Task 1 implementation
+- `Challenge 2` — Task 2 description
+- `CryptoHelpers/` - Task 2 implementation
+- `Challenge 3` — Task 3 description
+- `RandomVariable/` — Task 3 implementation
 
 Each task includes:
 - problem statement (if available)
@@ -64,17 +67,3 @@ This repository serves as part of my **professional portfolio** to demonstrate:
 ✔ Preparedness for technical interviews and coding tests
 
 ---
-
-## 🧠 Next Steps (Optional)
-
-To make this repo even stronger you can:
-
-- add short problem descriptions in English
-- include performance notes
-- write unit tests for each task
-- add badges for completed tasks
-
----
-
-Входная строка	f (задана словарем [ключ] = значение)
-1d4 -> 	[1] = 0.25, [2] = 0.25, [3] = 0.25, [4] = 0.25
