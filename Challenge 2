@@ -1,3 +1,98 @@
+📝 Task Description (English)
+
+There is a simple cryptography library that contains certificates which can be used to sign arbitrary data and verify the resulting signature.
+
+The library interfaces are defined as follows:
+
+public interface IStore : IDisposable
+{
+    IEnumerable<ICertificate> Certificates { get; }
+}
+
+public interface ICertificate : IDisposable
+{
+    IEnumerable<ICertificateParam> CertificateParams { get; }
+
+    byte[] Sign(byte[] data);
+
+    bool Verify(byte[] signature);
+}
+
+public interface ICertificateParam
+{
+    bool Is(string value);
+}
+
+📌 Library Constraints
+
+The library contains no more than 100 certificates.
+
+Each certificate contains no more than 100 parameters.
+
+Each parameter is globally unique:
+
+if a certificate contains parameter X, no other certificate in the store contains this parameter.
+
+⚠ Enumeration Behavior
+
+All enumerations are stable:
+
+repeated enumeration returns the same objects in the same order.
+
+However, enumerations are slow and unreliable:
+
+enumerating certificates is approximately 20 times slower than enumerating parameters
+
+enumeration may throw exceptions
+
+🎯 Task
+
+Implement a helper that, given a parameter value:
+
+finds the corresponding certificate
+
+signs data or verifies a signature using that certificate
+
+🚦 Requirements
+
+Minimize the number of calls to the library.
+
+Prefer enumerating certificate parameters over enumerating certificates.
+
+Do not retrieve a certificate unless there is certainty that it has not already been discovered among previously enumerated ones.
+
+The helper must be stable:
+
+if the library throws an exception during enumeration, the exception must be propagated
+
+on the next call, the helper must be able to resume searching, including certificates and parameters that were not yet enumerated
+
+If no certificate with the specified parameter exists in the library, the helper must throw an Exception.
+
+🔒 Additional Constraints
+
+Due to the instability of the library, multi-threaded code is not allowed.
+
+The solution must be implemented in a single-threaded manner.
+
+💡 What This Task Demonstrates
+
+This task evaluates the ability to:
+
+design efficient search logic
+
+work with unreliable external APIs
+
+optimize enumeration strategies
+
+handle partial failures gracefully
+
+write robust, defensive C# code
+
+---
+
+Описание на русском:
+
 Есть простая библиотека криптографии: в ней содержатся сертификаты, которыми можно подписывать любые данные и проверять получившуюся подпись.
 
 Интерфейсы библиотеки выглядят так
